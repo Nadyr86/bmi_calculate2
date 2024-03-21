@@ -1,3 +1,5 @@
+import 'package:bmi_calculate/app_constants/colors/app_colors.dart';
+import 'package:bmi_calculate/app_constants/text_styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomMainWidget extends StatelessWidget {
@@ -16,12 +18,12 @@ class CustomMainWidget extends StatelessWidget {
       height: 60.0,
       child: MaterialButton(
         onPressed: onPressed,
-        color: Colors.redAccent,
+        color: AppColors.redAccent,
         height: 45,
         minWidth: double.infinity,
         child: Text(
           buttonText.toUpperCase(),
-          style: TextStyle(fontSize: 25.0),
+          style: TextStyles.mainButton,
         ),
       ),
     );

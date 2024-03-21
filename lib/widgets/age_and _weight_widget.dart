@@ -1,3 +1,5 @@
+import 'package:bmi_calculate/app_constants/text_styles/app_text_styles.dart';
+import 'package:bmi_calculate/app_constants/texts/app_texts.dart';
 import 'package:bmi_calculate/widgets/custom_circle_button.dart';
 import 'package:flutter/material.dart';
 
@@ -25,20 +27,20 @@ class AgeAndWeightWidget extends StatelessWidget {
           Text(title),
           Text(
             ageOrWeight,
-            style: TextStyle(fontSize: 60),
+            style: TextStyles.ageOrWeight,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomCircleButton(
-                buttonText: '-',
+                buttonText: AppTexts.minus,
                 onPressed: decrement,
               ),
               SizedBox(
                 width: 5.0,
               ),
               CustomCircleButton(
-                buttonText: '+',
+                buttonText: AppTexts.plus,
                 onPressed: increment,
               )
             ],

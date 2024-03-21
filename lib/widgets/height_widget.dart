@@ -1,3 +1,5 @@
+import 'package:bmi_calculate/app_constants/colors/app_colors.dart';
+import 'package:bmi_calculate/app_constants/texts/app_texts.dart';
 import 'package:flutter/material.dart';
 
 class HeightWidget extends StatelessWidget {
@@ -11,7 +13,7 @@ class HeightWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          'HEIGHT',
+          AppTexts.height,
           style: TextStyle(fontSize: 25.0),
         ),
         Row(
@@ -27,17 +29,17 @@ class HeightWidget extends StatelessWidget {
               width: 3.0,
             ),
             Text(
-              'cm',
+              AppTexts.cm,
               style: TextStyle(fontSize: 20.0),
             )
           ],
         ),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
-            activeTrackColor: Colors.red,
-            inactiveTrackColor: Colors.white,
-            overlayColor: Colors.amber,
-            thumbColor: Colors.red,
+            activeTrackColor: AppColors.red,
+            inactiveTrackColor: AppColors.white,
+            overlayColor: AppColors.amber,
+            thumbColor: AppColors.red,
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
             overlayShape: RoundSliderOverlayShape(overlayRadius: 22),
           ),

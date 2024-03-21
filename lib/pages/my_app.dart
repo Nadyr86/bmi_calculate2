@@ -1,4 +1,5 @@
 import 'package:bmi_calculate/pages/bmi_page.dart';
+import 'package:bmi_calculate/utils/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,11 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData.dark().copyWith(
-        appBarTheme: AppBarTheme(backgroundColor: Color(0xff24263b)),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.darkTheme(),
       home: const BmiPage(),
     );
   }

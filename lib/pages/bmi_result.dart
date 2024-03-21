@@ -1,4 +1,7 @@
-import 'package:bmi_calculate/brain/bmi_brain.dart';
+import 'package:bmi_calculate/app_constants/colors/app_colors.dart';
+import 'package:bmi_calculate/app_constants/text_styles/app_text_styles.dart';
+import 'package:bmi_calculate/app_constants/texts/app_texts.dart';
+import 'package:bmi_calculate/data/repo/bmi_repo.dart';
 import 'package:bmi_calculate/widgets/custom_card.dart';
 import 'package:bmi_calculate/widgets/custom_main_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +23,14 @@ class BmiResult extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.75,
           width: MediaQuery.of(context).size.width * 0.9,
           child: CustomCard(
-            bgColor: Color(0xff323244),
+            bgColor: AppColors.mainColor,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    bmiBrain.getResult(bmiResult),
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff43DA8C)),
+                    bmiRepo.getResult(bmiResult),
+                    style: TextStyles.result
                   ),
                   Text(
                     bmiResult.toStringAsFixed(1),
@@ -40,7 +40,7 @@ class BmiResult extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      bmiBrain.getInterpretation(bmiResult),
+                      bmiRepo.getInterpretation(bmiResult),
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -51,7 +51,7 @@ class BmiResult extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CustomMainWidget(
-          buttonText: 'Re-calculate',
+          buttonText: AppTexts.reCalculate,
           onPressed: () {
             Navigator.pop(context);
           }),

@@ -1,7 +1,10 @@
+import 'package:bmi_calculate/app_constants/colors/app_colors.dart';
+import 'package:bmi_calculate/app_constants/text_styles/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomCircleButton extends StatelessWidget {
-  const CustomCircleButton({required this.buttonText,required this.onPressed, Key? key})
+  const CustomCircleButton(
+      {required this.buttonText, required this.onPressed, Key? key})
       : super(key: key);
 
   final String buttonText;
@@ -12,15 +15,12 @@ class CustomCircleButton extends StatelessWidget {
     return MaterialButton(
       child: Text(
         buttonText,
-        style: TextStyle(
-          fontSize: 42,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyles.circleButton,
       ),
       onPressed: onPressed,
-      color: Colors.red,
+      color: AppColors.red,
       height: 45,
-      minWidth: 45,
+      minWidth: 55,
       shape: CircleBorder(side: BorderSide()),
     );
   }

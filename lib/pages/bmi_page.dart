@@ -1,4 +1,6 @@
-import 'package:bmi_calculate/brain/bmi_brain.dart';
+import 'package:bmi_calculate/app_constants/colors/app_colors.dart';
+import 'package:bmi_calculate/app_constants/texts/app_texts.dart';
+import 'package:bmi_calculate/data/repo/bmi_repo.dart';
 import 'package:bmi_calculate/pages/bmi_result.dart';
 import 'package:bmi_calculate/widgets/age_and%20_weight_widget.dart';
 import 'package:bmi_calculate/widgets/custom_card.dart';
@@ -23,8 +25,8 @@ class _BmiPageState extends State<BmiPage> {
   int _weight = 60;
   int _age = 18;
 
-  Color _selectedColor = Color(0xff080707);
-  Color _unSelectedColor = Color(0xFF1F2230);
+  Color _selectedColor = AppColors.selectedColor;
+  Color _unSelectedColor = AppColors.unSelectedColor;
 
   Gender _gender = Gender.NONE;
 
@@ -32,7 +34,7 @@ class _BmiPageState extends State<BmiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text(AppTexts.bmiCalculator),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -49,13 +51,9 @@ class _BmiPageState extends State<BmiPage> {
                         ? _selectedColor
                         : _unSelectedColor,
                     child: GenderWidget(
-                      onTap: () {
-                        setState(() {
-                          _gender = Gender.MALE;
-                        });
-                      },
+                      onTap: () => _chooseGender(Gender.MALE),
                       icon: FontAwesomeIcons.mars,
-                      text: ('Male'),
+                      text: AppTexts.male,
                     ),
                   ),
                   const SizedBox(
@@ -66,13 +64,10 @@ class _BmiPageState extends State<BmiPage> {
                         ? _selectedColor
                         : _unSelectedColor,
                     child: GenderWidget(
-                        onTap: () {
-                          setState(() {
-                            _gender = Gender.FEMALE;
-                          });
-                        },
-                        icon: FontAwesomeIcons.venus,
-                        text: ('Famale')),
+                      onTap: () => _chooseGender(Gender.FEMALE),
+                      icon: FontAwesomeIcons.venus,
+                      text: AppTexts.famale,
+                    ),
                   ),
                 ],
               ),
@@ -91,7 +86,7 @@ class _BmiPageState extends State<BmiPage> {
                     },
                   ),
                 ),
-                bgColor: Color(0xff24263b),
+                bgColor: AppColors.mainColor,
               ),
               const SizedBox(
                 height: 20.0,
@@ -100,42 +95,40 @@ class _BmiPageState extends State<BmiPage> {
                 children: [
                   CustomCard(
                     child: AgeAndWeightWidget(
-                      title: 'Weight',
+                      title: AppTexts.weight,
                       ageOrWeight: _weight.toString(),
                       increment: () {
-                        setState(() {
-                          _weight--;
-                        });
-                      },
-                      decrement: () {
                         setState(() {
                           _weight++;
                         });
                       },
+                      decrement: () {
+                        setState(() {
+                          _weight--;
+                        });
+                      },
                     ),
-                    bgColor: Color(0xff24263b),
+                    bgColor: AppColors.mainColor,
                   ),
                   SizedBox(
                     width: 20.0,
                   ),
                   CustomCard(
                     child: AgeAndWeightWidget(
-                      title: 'Age',
+                      title: AppTexts.age,
                       ageOrWeight: _age.toString(),
                       increment: () {
                         setState(() {
-                          _age--;
+                          _age++;
                         });
                       },
                       decrement: () {
                         setState(() {
-                          _age++;
-                          ;
+                          _age--;
                         });
-                        _age++;
                       },
                     ),
-                    bgColor: Color(0xff24263b),
+                    bgColor: AppColors.mainColor,
                   ),
                 ],
               ),
@@ -147,15 +140,21 @@ class _BmiPageState extends State<BmiPage> {
         ),
       ),
       bottomNavigationBar: CustomMainWidget(
-        buttonText: "Calculate",
+        buttonText: AppTexts.calculate,
         onPressed: () {
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => BmiResult(
-                      bmiResult: bmiBrain.calculateBmi(_weight, _height))));
+                      bmiResult: bmiRepo.calculateBmi(_weight, _height))));
         },
       ),
     );
+  }
+
+ void _chooseGender(Gender _chooseGender) {
+    setState(() {
+      _gender = _chooseGender;
+    });
   }
 }
